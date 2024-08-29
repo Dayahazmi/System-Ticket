@@ -1,50 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Home = () => {
+  const [activeTab, setActiveTab] = useState('open');
   return (
-    <div className="text-black p-8 flex flex-col items-center">
-      <h1 className="text-2xl font-bold">System Ticket</h1>
-      <p className="p-2 mt-5 text-center">
-        Please if had any issue related to the IT/Billing and others please use this website
-      </p>
-
-      <div className="my-5 w-full flex justify-center">
-        <label className="text-black w-2/4 text-left">
-          Branch :
-          <select className="ml-2 border border-black w-full min-h-10">
-            <option value="Headquaters">Headquaters</option>
-            <option value="Kuantan">Kuantan</option>
-            <option value="Machang">Machang</option>
-            <option value="Kuala Terengganu">Kuala Terengganu</option>
-          </select>
-        </label>
+    <div>
+      <div className="flex flex-col text-left max-w-2xl mx-auto mt-10">
+        <h1 className="text-2xl font-bold ">My Tickets</h1>
+        <p className='mt-2'>If you don't see your tickets, please call us</p>
       </div>
+      <div className="max-w-2xl mx-auto mt-10 p-5 border-solid border-2 border-gray-200 ">
+        <div className="flex justify-between items-center">
+          <div>
+            <button
+              className={`px-4 py-2 ${activeTab === 'open' ? 'text-blue-500' : 'text-gray-500'}`}
+              onClick={() => setActiveTab('open')}
+            >
+              Open Tickets
+            </button>
+            <button
+              className={`px-4 py-2 ${activeTab === 'closed' ? 'text-blue-500' : 'text-gray-500'}`}
+              onClick={() => setActiveTab('closed')}
+            >
+              Closed Tickets
+            </button>
+          </div>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+            Create New Ticket
+          </button>
+        </div>
 
-      <div className="mb-8 w-full flex justify-center">
-        <label className="text-black w-2/4 text-left">
-          Department :
-          <select className="ml-2 border border-black w-full min-h-10 ">
-            <option value="Human Resources">Human Resources</option>
-            <option value="Control Center">Control Center</option>
-            <option value="Technician">Technician</option>
-            <option value="Account">Account</option>
-          </select>
-        </label>
-      </div>
+        <div className="mt-10 text-center">
+          <img
+            src="ticket.png"
+            alt=""
+            className="mx-auto"
+          />
+          <p className="text-gray-500 mt-4">You don't have any {activeTab === 'open' ? 'open' : 'closed'} tickets</p>
 
-      <div className="mb-8 w-full flex justify-center">
-        <textarea className="ml-2 border border-black" rows={2.5} cols={85} placeholder="Subject"></textarea>
-      </div>
-
-      <div className="mb-8 w-full flex justify-center">
-        <textarea className="ml-2 border border-black" rows={10} cols={85} placeholder="Please type your issue here"></textarea>
-      </div>
-
-      <div className="w-full flex justify-center">
-        <button className="bg-blue-500 text-white py-2 px-4 rounded">Submit</button>
+        </div>
       </div>
     </div>
+
   );
-}
+};
 
 export default Home;
